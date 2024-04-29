@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart';  
+import 'login.dart'; // Certifique-se de que o caminho para login.dart está correto.
 
 void main() {
   runApp(MyApp());
@@ -42,13 +42,7 @@ class MyApp extends StatelessWidget {
         ),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Cadastro'),
-        ),
-        body: RegistrationScreen(),
-        backgroundColor: Colors.blue.shade100,
-      ),
+      home: LoginScreen(),  // Inicie com a tela de Login
     );
   }
 }
@@ -65,15 +59,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String _confirmPassword = '';
 
   void _trySubmitForm() {
-    final isValid = _formKey.currentState?.validate();
-    if (isValid == true) {
-      _formKey.currentState?.save();
-      if (_password != _confirmPassword) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('As senhas não coincidem.'))
-        );
-      } else {
-        // Se tudo estiver correto, redireciona para a tela de Login
+  final isValid = _formKey.currentState?.validate() ?? false; // Se for null, considere como false
+  if (isValid) {
+    _formKey.currentState?.save();
+    if (_password != _confirmPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('As senhas não coincidem.'))
+      );
+    } else {
+        // Redireciona para a tela de Login após o cadastro
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => LoginScreen()),
@@ -84,12 +78,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        color: Colors.blue.shade100,
-        margin: EdgeInsets.all(20),
-        child: SingleChildScrollView(
-          child: Padding(
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Cadastro'),
+      ),
+      body: Center(
+        child: Card(
+          color: Colors.blue.shade100,
+          margin: EdgeInsets.all(20),
+          child: SingleChildScrollView(
             padding: EdgeInsets.all(16),
             child: Form(
               key: _formKey,

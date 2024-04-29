@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Home.dart';  // Certifique-se de que o caminho esteja correto
+import 'main.dart';  // Importa a classe MyApp que contém a RegistrationScreen
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -15,9 +16,7 @@ class _LoginScreenState extends State<LoginScreen> {
     final isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       _formKey.currentState?.save();
-      // Aqui você pode inserir a lógica de verificação das credenciais
-      // Por exemplo, verificar com uma API ou banco de dados local
-      // Neste exemplo, vamos assumir que as credenciais estão corretas
+      // Aqui você pode incluir sua lógica para validar a matrícula e a senha
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -25,7 +24,12 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
-  @override
+  void _navigateToSignUp() {
+    // Substitua 'MainScreen()' pela tela de cadastro correta se ela for diferente
+    Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegistrationScreen()));
+  }
+
+   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -45,7 +49,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     if (value == null || value.isEmpty) {
                       return 'Por favor, insira sua matrícula';
                     }
-                    return null;
+                    return null; // Removida a validação de 6 dígitos
                   },
                   onSaved: (value) => _matricula = value ?? '',
                 ),
@@ -64,6 +68,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   onPressed: _tryLogin,
                   child: Text('Login'),
+                ),
+                TextButton(
+                  onPressed: _navigateToSignUp,
+                  child: Text('Não tem conta? Cadastre-se'),
                 ),
               ],
             ),
