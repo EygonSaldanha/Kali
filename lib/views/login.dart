@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Home.dart';  // Certifique-se de que o caminho esteja correto
-import 'main.dart';  // Importa a classe MyApp que contém a RegistrationScreen
+import '../Home.dart'; 
+import '../main.dart';  // Importa a classe MyApp que contém a RegistrationScreen
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -52,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     return null; // Removida a validação de 6 dígitos
                   },
                   onSaved: (value) => _matricula = value ?? '',
-                ),
+                ), SizedBox(height:10),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Senha'),
                   obscureText: true,

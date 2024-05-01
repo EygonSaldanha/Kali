@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Home.dart'; // Certifique-se de que o caminho esteja correto
+import 'package:flutter_application_1/slider.dart';
+import '../Home.dart'; // Certifique-se de que o caminho esteja correto
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -18,7 +19,12 @@ class SettingsScreen extends StatelessWidget {
         ),
       ),
       body: Center(
-        child: Text('Conteúdo das configurações aqui'),
+        child: Column(
+          children: [
+            Text('Conteúdo das configurações aqui'),
+            SliderExample(),
+          ],
+        ),
       ),
     );
   }

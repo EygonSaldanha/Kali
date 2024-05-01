@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'login.dart'; // Certifique-se de que o caminho para login.dart está correto.
+import 'views/login.dart';
 
 void main() {
   runApp(MyApp());
