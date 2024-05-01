@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'settings.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -37,10 +38,17 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
+  setState(() {
+    _selectedIndex = index;
+    if (_selectedIndex == 2) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => SettingsScreen()),
+      );
+    }
+  });
+}
+
 
   Widget _buildArtGallery() {
     return ListView.builder(
@@ -103,7 +111,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Widget> get _widgetOptions => <Widget>[
     _buildArtGallery(),
     Text('Página de Pesquisa', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Página de Configurações', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    SettingsScreen(), // Adicione a nova tela aqui
   ];
 
   @override
