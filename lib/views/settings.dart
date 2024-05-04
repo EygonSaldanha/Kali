@@ -21,7 +21,7 @@ class SettingsScreen extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Text('Conteúdo das configurações aqui'),
+            Text('Escolha o tamanho da fonte'),
             SliderExample(),
           ],
         ),

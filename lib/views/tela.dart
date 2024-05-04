@@ -1,34 +1,18 @@
 import 'package:flutter/material.dart';
-import '../Home.dart';
 
-class SearchPage extends StatefulWidget {
-  @override
-  _SearchPageState createState() => _SearchPageState();
-}
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
 
-class _SearchPageState extends State<SearchPage> {
-  bool _showBackButton = false;
+
+
+
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Tela de pesquisa'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.white,),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => HomeScreen()),
-            );
-          },
-        ),
-      ),
-      backgroundColor: Colors.transparent, 
-      body: Container(
+    return Scaffold(body: Container( width: MediaQuery.of(context).size.width,height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/imagens/imagem_pesquisa.jpg'),
+            image: NetworkImage('https://i.pinimg.com/originals/ee/8f/b5/ee8fb5eb5fb3ab589f95db932edf1ec8.jpg'), 
             fit: BoxFit.cover, 
           ),
         ),
@@ -48,7 +32,7 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                   child: Row(
                     children: [
-                      if (_showBackButton)
+                      if (true)
                         IconButton(
                           onPressed: () {
                             Navigator.popUntil(context, ModalRoute.withName('/search'));
@@ -58,12 +42,11 @@ class _SearchPageState extends State<SearchPage> {
                       Expanded(
                         child: TextField(
                           onChanged: (text) {
-                            setState(() {
-                              _showBackButton = text.isNotEmpty;
-                            });
-                          },
-                          decoration: InputDecoration(
-                            prefixIcon: _showBackButton ? null : Icon(Icons.search),
+                            
+                            }
+                          
+                          ,decoration: InputDecoration(
+                            prefixIcon: true ? null : Icon(Icons.search),
                             hintText: 'Pesquisar...',
                             border: InputBorder.none,
                           ),

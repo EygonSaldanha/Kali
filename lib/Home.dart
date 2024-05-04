@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/views/homePage.dart';
+import 'package:flutter_application_1/views/tela.dart';
 import 'views/settings.dart';
+import 'views/pesquisa.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -18,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Widget> get _widgetOptions => <Widget>[
     HomePage(),
-    Text('Página de Pesquisa', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+    SearchPage(),
     SettingsScreen(),
   ];
 
