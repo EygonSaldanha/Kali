@@ -107,7 +107,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     onSaved: (value) {
                       _matricula = value ?? '';
                     },
-                  ),
+                  ), SizedBox(height:10),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Senha',
@@ -123,7 +123,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     onSaved: (value) {
                       _password = value ?? '';
                     },
-                  ),
+                  ), SizedBox(height:10),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Confirme a Senha',
