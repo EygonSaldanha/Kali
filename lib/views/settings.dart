@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/slider.dart';
-import '../Home.dart'; // Certifique-se de que o caminho esteja correto
+import '../Home.dart';
+import 'login.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -23,6 +24,43 @@ class SettingsScreen extends StatelessWidget {
           children: [
             Text('Escolha o tamanho da fonte'),
             SliderExample(),
+            SizedBox(height: 20), // Adiciona um espaço entre os elementos
+
+            ElevatedButton(
+              onPressed: () {
+                // LOGOUT
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Confirmar Logout'),
+                    content: Text('Você deseja sair do aplicativo?'),
+                    actions: <Widget>[
+                      TextButton(
+                        child: Text('Cancelar'),
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Fecha o diálogo
+                        },
+                      ),
+                      TextButton(
+                        child: Text('Logout'),
+                        onPressed: () {
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => LoginScreen()),
+                            ModalRoute.withName('/'),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: Text('Logout'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Colors.red, // Define a cor do botão para vermelho
+              ),
+            ),
           ],
         ),
       ),
