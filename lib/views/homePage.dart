@@ -37,7 +37,9 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(title: Text("Galeria de arte"),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Galeria de arte"),
     ),
     body: ListView.builder(
       itemCount: _artworks.length,
