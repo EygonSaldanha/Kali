@@ -3,7 +3,6 @@ import 'package:flutter_application_1/views/homePage.dart';
 import 'package:flutter_application_1/views/tela.dart';
 import 'views/settings.dart';
 import 'views/pesquisa.dart';
-import 'views/qr_code.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -23,7 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
     HomePage(),
     SearchPage(),
     SettingsScreen(),
-    qr_code(),
   ];
 
   @override
@@ -37,10 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Pesquisar'),
           BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Configurações'),
-          BottomNavigationBarItem(icon: Icon(Icons.qr_code), label: 'qr_code'),
         ],
         currentIndex: _selectedIndex,
         selectedItemColor: Colors.amber[800],
+        unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
         onTap: _onItemTapped,
       ),
     );
