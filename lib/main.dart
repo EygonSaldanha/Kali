@@ -1,8 +1,14 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/theme/theme.dart';
+import 'package:flutter_application_1/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 import 'views/login.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => ThemeProvider(), child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -10,39 +16,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Tela de Cadastro',
-      theme: ThemeData(
-        primaryColor: Colors.blue.shade800,
-        hintColor: Colors.amber,
-        appBarTheme: AppBarTheme(
-          color: Colors.blue.shade800,
-          titleTextStyle: TextStyle(
-            color: Colors.amber.shade600,
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-          actionsIconTheme: IconThemeData(color: Colors.amber.shade600),
-        ),
-        elevatedButtonTheme: ElevatedButtonThemeData(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(Colors.amber),
-            foregroundColor: MaterialStateProperty.all(Colors.blue.shade800),
-          ),
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          border: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.blue.shade800),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.blue.shade800),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: Colors.amber.shade600),
-          ),
-          labelStyle: TextStyle(color: Colors.blue.shade800),
-        ),
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: LoginScreen(),  // Inicie com a tela de Login
+      theme: Provider.of<ThemeProvider>(context).themeData,
+      home: LoginScreen(), // Inicie com a tela de Login
     );
   }
 }
@@ -59,17 +34,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   String _confirmPassword = '';
 
   void _trySubmitForm() {
-  final isValid = _formKey.currentState?.validate() ?? false; // Se for null, considere como false
-  if (isValid) {
-    _formKey.currentState?.save();
-    if (_password != _confirmPassword) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('As senhas não coincidem.'))
-      );
-    } else {
+    final isValid = _formKey.currentState?.validate() ??
+        false; // Se for null, considere como false
+    if (isValid) {
+      _formKey.currentState?.save();
+      if (_password != _confirmPassword) {
+        ScaffoldMessenger.of(Provider.of(context as BuildContext))
+            .showSnackBar(SnackBar(content: Text('As senhas não coincidem.')));
+      } else {
         // Redireciona para a tela de Login após o cadastro
         Navigator.pushReplacement(
-          context,
+          context as BuildContext,
           MaterialPageRoute(builder: (context) => LoginScreen()),
         );
       }
@@ -84,7 +59,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
       body: Center(
         child: Card(
-          color: Colors.blue.shade100,
+          color: Theme.of(context).colorScheme.background,
           margin: EdgeInsets.all(20),
           child: SingleChildScrollView(
             padding: EdgeInsets.all(16),
@@ -96,7 +71,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Matrícula',
-                      labelStyle: TextStyle(color: Colors.blue.shade800),
+                      labelStyle: TextStyle(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
@@ -107,7 +83,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     onSaved: (value) {
                       _matricula = value ?? '';
                     },
-                  ), SizedBox(height:10),
+                  ),
+                  SizedBox(height: 10),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Senha',
@@ -123,7 +100,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     onSaved: (value) {
                       _password = value ?? '';
                     },
-                  ), SizedBox(height:10),
+                  ),
+                  SizedBox(height: 10),
                   TextFormField(
                     decoration: InputDecoration(
                       labelText: 'Confirme a Senha',
@@ -143,7 +121,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   SizedBox(height: 12),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.amber,
+                      backgroundColor: Theme.of(context).colorScheme.secondary,
                     ),
                     onPressed: _trySubmitForm,
                     child: Text(

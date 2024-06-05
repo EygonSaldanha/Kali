@@ -19,10 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   List<Widget> get _widgetOptions => <Widget>[
-    HomePage(),
-    SearchPage(),
-    SettingsScreen(),
-  ];
+        HomePage(),
+        SearchPage(),
+        SettingsScreen(),
+      ];
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +34,14 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Início'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Pesquisar'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Configurações'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings), label: 'Configurações'),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Theme.of(context).colorScheme.secondary,
         unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
         onTap: _onItemTapped,
       ),
     );
   }
 }
-

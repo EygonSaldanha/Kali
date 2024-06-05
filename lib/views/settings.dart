@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/slider.dart';
+import 'package:flutter_application_1/theme/theme_provider.dart';
+import 'package:provider/provider.dart';
 import '../Home.dart';
 import 'login.dart';
 
@@ -25,7 +27,12 @@ class SettingsScreen extends StatelessWidget {
             Text('Escolha o tamanho da fonte'),
             SliderExample(),
             SizedBox(height: 20), // Adiciona um espaço entre os elementos
-
+            ElevatedButton(
+                child: Text('Tema'),
+                onPressed: () {
+                  Provider.of<ThemeProvider>(context, listen: false)
+                      .toggleTheme();
+                }),
             ElevatedButton(
               onPressed: () {
                 // LOGOUT
