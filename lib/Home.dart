@@ -38,8 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icon(Icons.settings), label: 'Configurações'),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Theme.of(context).colorScheme.secondary,
-        unselectedItemColor: const Color.fromARGB(255, 0, 0, 0),
+        selectedItemColor: Theme.of(context).colorScheme.primary,
+        unselectedItemColor: Theme.of(context).colorScheme.secondary,
         onTap: _onItemTapped,
       ),
     );

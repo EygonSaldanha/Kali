@@ -5,7 +5,7 @@ ThemeData lightTheme = ThemeData(
   colorScheme: const ColorScheme.light(
     background: Color.fromRGBO(241, 244, 249, 1),
     primary: Color.fromRGBO(29, 174, 255, 1),
-    secondary: Color.fromRGBO(29, 174, 255, 1),
+    secondary: Color.fromRGBO(0, 0, 0, 1),
   ),
 );
 ThemeData darkTheme = ThemeData(
@@ -13,7 +13,7 @@ ThemeData darkTheme = ThemeData(
   colorScheme: const ColorScheme.dark(
     background: Color.fromRGBO(2, 6, 23, 1),
     primary: Color.fromRGBO(29, 174, 255, 1),
-    secondary: Color.fromRGBO(29, 174, 255, 1),
+    secondary: Color.fromRGBO(238, 238, 238, 1),
   ),
 );
 
