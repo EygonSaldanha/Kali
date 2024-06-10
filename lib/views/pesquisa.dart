@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'homePage.dart';
 
+
 class SearchPage extends StatefulWidget {
   @override
   _SearchPageState createState() => _SearchPageState();
 }
+List<Widget> get _widgetOptions => <Widget>[
+        HomePage(),
+      ];
 
 class _SearchPageState extends State<SearchPage> {
   bool _showBackButton = false;
@@ -86,6 +90,7 @@ class _SearchPageState extends State<SearchPage> {
                 ),
               ),
             ),
+            
             if (_filteredSuggestions.isNotEmpty)
               Expanded(
                 child: ListView.builder(
