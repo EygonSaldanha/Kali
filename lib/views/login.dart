@@ -9,14 +9,14 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
-  String _matricula = '';
+  String _username = '';
   String _password = '';
 
   void _tryLogin() {
     final isValid = _formKey.currentState?.validate();
     if (isValid == true) {
       _formKey.currentState?.save();
-      // Aqui você pode incluir sua lógica para validar a matrícula e a senha
+      // Aqui você pode incluir sua lógica para validar o usuário e a senha
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) => RegistrationScreen()));
   }
 
-   @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -44,15 +44,16 @@ class _LoginScreenState extends State<LoginScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextFormField(
-                  decoration: InputDecoration(labelText: 'Matrícula'),
+                  decoration: InputDecoration(labelText: 'Usuário'),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
-                      return 'Por favor, insira sua matrícula';
+                      return 'Por favor, insira seu usuário';
                     }
-                    return null; // Removida a validação de 6 dígitos
+                    return null;
                   },
-                  onSaved: (value) => _matricula = value ?? '',
-                ), SizedBox(height:10),
+                  onSaved: (value) => _username = value ?? '',
+                ),
+                SizedBox(height: 10),
                 TextFormField(
                   decoration: InputDecoration(labelText: 'Senha'),
                   obscureText: true,

@@ -1,8 +1,6 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/theme/theme.dart';
-import 'package:flutter_application_1/theme/theme_provider.dart';
+import 'theme/theme.dart';
+import 'theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'views/login.dart';
 
@@ -29,22 +27,20 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _formKey = GlobalKey<FormState>();
-  String _matricula = '';
+  String _username = '';
   String _password = '';
   String _confirmPassword = '';
 
   void _trySubmitForm() {
-    final isValid = _formKey.currentState?.validate() ??
-        false; // Se for null, considere como false
+    final isValid = _formKey.currentState?.validate() ?? false; // Se for null, considere como false
     if (isValid) {
       _formKey.currentState?.save();
       if (_password != _confirmPassword) {
-        ScaffoldMessenger.of(Provider.of(context as BuildContext))
-            .showSnackBar(SnackBar(content: Text('As senhas não coincidem.')));
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('As senhas não coincidem.')));
       } else {
         // Redireciona para a tela de Login após o cadastro
         Navigator.pushReplacement(
-          context as BuildContext,
+          context,
           MaterialPageRoute(builder: (context) => LoginScreen()),
         );
       }
@@ -70,18 +66,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 children: <Widget>[
                   TextFormField(
                     decoration: InputDecoration(
-                      labelText: 'Matrícula',
+                      labelText: 'Usuário',
                       labelStyle: TextStyle(
                           color: Theme.of(context).colorScheme.secondary),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Por favor insira sua matrícula.';
+                        return 'Por favor insira seu usuário.';
                       }
                       return null;
                     },
                     onSaved: (value) {
-                      _matricula = value ?? '';
+                      _username = value ?? '';
                     },
                   ),
                   SizedBox(height: 10),

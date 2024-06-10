@@ -21,18 +21,17 @@ class SettingsScreen extends StatelessWidget {
           },
         ),
       ),
-      body: Center(
+       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center, 
           children: [
-            Text('Escolha o tamanho da fonte'),
-            SliderExample(),
-            SizedBox(height: 20), // Adiciona um espaço entre os elementos
             ElevatedButton(
                 child: Text('Tema'),
                 onPressed: () {
                   Provider.of<ThemeProvider>(context, listen: false)
                       .toggleTheme();
                 }),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 // LOGOUT
